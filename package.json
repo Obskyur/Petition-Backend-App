@@ -1,0 +1,32 @@
+{
+	"name": "petition",
+	"version": "1.0.0",
+	"description": "",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Obskyur/Petition-Backend-App.git"
+	},
+	"author": "Tristan Miller",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Obskyur/Petition-Backend-App/issues"
+	},
+	"devDependencies": {
+		"ejs": "^3.1.10",
+		"express": "^4.21.2",
+		"express-session": "^1.18.1",
+		"sequelize": "^6.37.6",
+		"sqlite3": "^5.1.7"
+	},
+	"dependencies": {
+		"ejs": "^3.1.10",
+		"express": "^4.21.2",
+		"express-session": "^1.18.1",
+		"sequelize": "^6.37.6",
+		"sqlite3": "^5.1.7"
+	}
+}
