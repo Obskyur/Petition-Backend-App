@@ -13,6 +13,7 @@ router.get("/", async (req, res) => {
 
 router.post("/sign", async (req, res) => {
 	try {
+		console.log("REQUEST BODY: " + req.body);
 		await Signature.create({
 			name: req.body.name,
 			city: req.body.city,

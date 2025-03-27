@@ -11,25 +11,11 @@ const indexRouter = require("./routes");
 const app = express();
 const server = http.createServer(app);
 
-let port;
-portfinder.getPort((err, availablePort) => {
-	if (err) {
-		console.error("Error finding an available port:", err);
-		process.exit(1);
-	} else {
-		port = availablePort;
-		server.listen(port, () => {
-			console.log(`Server listening on port ${port}`);
-		});
-	}
-});
-
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-app.set("port", port);
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(
@@ -42,9 +28,43 @@ app.use(
 
 app.use("/", indexRouter);
 
-sequelize.sync({ force: true }).then(() => {
-	addDefaults().then(() => console.log("Defaults added."));
+sequelize.sync({ force: true }).then(async () => {
+	try {
+		await addDefaults();
+		console.log("Defaults added.");
+		await startServer();
+	} catch (err) {
+		console.error("Error during initialization:", err);
+		process.exit(1);
+	}
 });
+
+async function startServer() {
+	try {
+		const port = await getPort();
+		app.set("port", port);
+
+		server.listen(port);
+		server.on("listening", () => {
+			console.log(`Server is running at http://localhost:${port}`);
+		});
+	} catch (err) {
+		console.error("Error starting the server:", err);
+		process.exit(1);
+	}
+}
+
+function getPort() {
+	return new Promise((resolve, reject) => {
+		portfinder.getPort((err, availablePort) => {
+			if (err) {
+				reject(err);
+			} else {
+				resolve(availablePort);
+			}
+		});
+	});
+}
 
 async function addDefaults() {
 	await Petition.create({

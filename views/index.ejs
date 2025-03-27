@@ -33,10 +33,10 @@
 			</section>
 			<form class="form" method="POST" action="/sign">
 				<h2 class="form__title">Sign the Petition</h2>
-				<input id="name" class="form__input" type="text" placeholder="Your Name" />
-				<input id="email" class="form__input" type="text" placeholder="Your Email" />
-				<input id="city" class="form__input" type="text" placeholder="City" />
-				<input id="state" class="form__input" type="text" placeholder="State (e.g., WA)" />
+				<input required id="name" class="form__input" type="text" name="name" placeholder="Your Name" />
+				<input required id="email" class="form__input" type="text" name="email" placeholder="Your Email" />
+				<input required id="city" class="form__input" type="text" name="city" placeholder="City" />
+				<input required id="state" class="form__input" type="text" name="state" placeholder="State (e.g., WA)" />
 				<button id="submit" class="form__button">Sign Petition</button>
 			</form>
 			<table>
