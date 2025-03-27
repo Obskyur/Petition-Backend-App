@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>AcmePetition.org</title>
+		<link rel="stylesheet" href="Petition.css" />
+		<script src="Petition.js" defer></script>
+	</head>
+	<body>
+		<nav class="navbar">
+			<ul class="nav-list">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Categories</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+		</nav>
+		<main class="main">
+			<section class="hero">
+				<h1 class="hero__title">Move CPTS 489 to Afternoon in Winter!</h1>
+				<div class="hero__wrapper">
+					<p class="hero__text">
+						The image you see on the right is a representation of our professor every morning, right before his much-needed coffee that helps thaw him
+						out a bit. Imagine having to wake up at 4 or 5 AM in the dead of winter just to prepare for class. Technically, since the sun hasn’t even
+						risen yet, can we really call 4 AM "morning"? The frigid cold, combined with the mental fog of early hours, is an unfair battle both for
+						students and faculty alike. No one should have to endure sub-zero temperatures just to attend an 8 AM lecture. Morning brain freeze
+						inevitably leads to null pointer exceptions in our heads! For these reasons, we humbly request the administration to consider shifting
+						CPTS 489 to a more humane afternoon time slot.
+					</p>
+					<img class="hero__img" src="https://wsu.instructure.com/courses/1771603/files/130691268/preview" alt="Freezing Dude" />
+				</div>
+			</section>
+			<form class="form" onsubmit="validateEmail()">
+				<h2 class="form__title">Sign the Petition</h2>
+				<input id="name" class="form__input" type="text" placeholder="Your Name" />
+				<input id="email" class="form__input" type="text" placeholder="Your Email" />
+				<input id="city" class="form__input" type="text" placeholder="City" />
+				<input id="state" class="form__input" type="text" placeholder="State (e.g., WA)" />
+				<button id="submit" class="form__button">Sign Petition</button>
+			</form>
+			<table>
+				<h2>Signatures</h2>
+				<tr>
+					<th>Name</th>
+					<th>City</th>
+					<th>State</th>
+				</tr>
+				<tr>
+					<td>Alice Johnson</td>
+					<td>Seattle</td>
+					<td>WA</td>
+				</tr>
+				<tr>
+					<td>Bob Smith</td>
+					<td>Portland</td>
+					<td>OR</td>
+				</tr>
+			</table>
+		</main>
+	</body>
+</html>
