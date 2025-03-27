@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>AcmePetition.org</title>
-		<link rel="stylesheet" href="Petition.css" />
+		<link rel="stylesheet" href="/styles/index.css" />
 		<script src="Petition.js" defer></script>
 	</head>
 	<body>
@@ -31,7 +31,7 @@
 					<img class="hero__img" src="https://wsu.instructure.com/courses/1771603/files/130691268/preview" alt="Freezing Dude" />
 				</div>
 			</section>
-			<form class="form" onsubmit="validateEmail()">
+			<form class="form" method="POST" action="/sign">
 				<h2 class="form__title">Sign the Petition</h2>
 				<input id="name" class="form__input" type="text" placeholder="Your Name" />
 				<input id="email" class="form__input" type="text" placeholder="Your Email" />
@@ -46,16 +46,13 @@
 					<th>City</th>
 					<th>State</th>
 				</tr>
+				<% for (sig of signatures) { %>
 				<tr>
-					<td>Alice Johnson</td>
-					<td>Seattle</td>
-					<td>WA</td>
+					<td><%= sig.name %></td>
+					<td><%= sig.city %></td>
+					<td><%= sig.state %></td>
 				</tr>
-				<tr>
-					<td>Bob Smith</td>
-					<td>Portland</td>
-					<td>OR</td>
-				</tr>
+				<% } %>
 			</table>
 		</main>
 	</body>

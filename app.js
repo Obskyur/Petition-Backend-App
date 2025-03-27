@@ -1,13 +1,32 @@
 const express = require("express");
 const session = require("express-session");
+const bodyParser = require("body-parser");
 const path = require("path");
 const sequelize = require("./db");
 const Petition = require("./models/Signature");
+const http = require("http");
+const portfinder = require("portfinder");
+const indexRouter = require("./routes");
 
 const app = express();
+const server = http.createServer(app);
+
+let port;
+portfinder.getPort((err, availablePort) => {
+	if (err) {
+		console.error("Error finding an available port:", err);
+		process.exit(1);
+	} else {
+		port = availablePort;
+		server.listen(port, () => {
+			console.log(`Server listening on port ${port}`);
+		});
+	}
+});
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+app.set("port", port);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -20,6 +39,8 @@ app.use(
 		saveUninitialized: true,
 	})
 );
+
+app.use("/", indexRouter);
 
 sequelize.sync({ force: true }).then(() => {
 	addDefaults().then(() => console.log("Defaults added."));
